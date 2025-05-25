@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS-9 | Quantum Audio Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="crt-overlay"></div>
+    <div class="matrix-rain" id="matrix-rain"></div>
+    <div class="chaos-indicator" id="chaos-indicator">CHAOS MODE ACTIVE</div>
+    
+    <div class="container">
+        <h1 class="neon-text" id="main-title">NEXUS-9 | Quantum Audio Intelligence</h1>
+        <div id="hal-eye" class="hal-eye">
+            <div class="hal-pupil"></div>
+            <div class="hal-glow"></div>
+        </div>
+        
+        <div class="control-group">
+            <h2>Global Controls</h2>
+            <div class="grid">
+                <div class="slider-container">
+                    <label for="tempo">Tempo:</label>
+                    <input type="range" id="tempo" class="slider" min="60" max="180" value="120">
+                    <span id="tempo-value">120</span>
+                </div>
+                <div class="tap-tempo-container">
+                    <button id="tap-tempo-btn">Tap Tempo</button>
+                    <span id="tap-tempo-display">---</span>
+                </div>
+                <div class="slider-container">
+                    <label for="master-volume">Master Volume:</label>
+                    <input type="range" id="master-volume" class="slider" min="0" max="1" step="0.01" value="0.7">
+                </div>
+                <div>
+                    <label for="mood-select">Mood:</label>
+                    <select id="mood-select">
+                        <option value="energetic">Energetic</option>
+                        <option value="mellow">Mellow</option>
+                        <option value="robotic">Robotic</option>
+                        <option value="dreamy">Dreamy</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="subdivision-select">Subdivision:</label>
+                    <select id="subdivision-select">
+                        <option value="4">4 steps</option>
+                        <option value="3">3 steps</option>
+                    </select>
+                </div>
+                <div class="slider-container">
+                    <label for="swing">Swing:</label>
+                    <input type="range" id="swing" class="slider" min="0" max="0.5" step="0.01" value="0">
+                </div>
+            </div>
+        </div>
+    
+        <div class="control-group">
+            <h2>Pattern Presets</h2>
+            <div class="pattern-presets" id="pattern-presets"></div>
+        </div>
+
+        <div class="control-group">
+            <h2>Sequencers</h2>
+            <div id="drum-sequencer" class="sequencer"></div>
+            <div id="synth1-sequencer" class="sequencer"></div>
+            <div id="synth2-sequencer" class="sequencer"></div>
+        </div>
+        
+        <div class="control-group">
+            <h2>Pattern Manager</h2>
+            <div class="pattern-manager">
+                <input type="text" id="pattern-name" class="pattern-name-input" placeholder="Pattern name...">
+                <button id="save-pattern">Save Pattern</button>
+                <button id="load-pattern">Load Pattern</button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <h2>Synth 1</h2>
+            <div class="grid">
+                <div>
+                    <label for="synth1-waveform">Waveform:</label>
+                    <select id="synth1-waveform">
+                        <option value="sine">Sine</option>
+                        <option value="square">Square</option>
+                        <option value="sawtooth">Sawtooth</option>
+                        <option value="triangle">Triangle</option>
+                    </select>
+                </div>
+                <div class="slider-container">
+                    <label for="synth1-volume">Volume:</label>
+                    <input type="range" id="synth1-volume" class="slider" min="0" max="1" step="0.01" value="0.5">
+                </div>
+                <div class="slider-container">
+                    <label for="synth1-detune">Detune:</label>
+                    <input type="range" id="synth1-detune" class="slider" min="-100" max="100" value="0">
+                </div>
+                <div class="slider-container">
+                    <label for="synth1-filter">Filter Cutoff:</label>
+                    <input type="range" id="synth1-filter" class="slider" min="20" max="20000" value="20000">
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <h2>Synth 2</h2>
+            <div class="grid">
+                <div>
+                    <label for="synth2-waveform">Waveform:</label>
+                    <select id="synth2-waveform">
+                        <option value="sine">Sine</option>
+                        <option value="square">Square</option>
+                        <option value="sawtooth">Sawtooth</option>
+                        <option value="triangle">Triangle</option>
+                    </select>
+                </div>
+                <div class="slider-container">
+                    <label for="synth2-volume">Volume:</label>
+                    <input type="range" id="synth2-volume" class="slider" min="0" max="1" step="0.01" value="0.5">
+                </div>
+                <div class="slider-container">
+                    <label for="synth2-detune">Detune:</label>
+                    <input type="range" id="synth2-detune" class="slider" min="-100" max="100" value="0">
+                </div>
+                <div class="slider-container">
+                    <label for="synth2-filter">Filter Cutoff:</label>
+                    <input type="range" id="synth2-filter" class="slider" min="20" max="20000" value="20000">
+                </div>
+            </div>
+        </div>
+    
+        <div class="control-group">
+            <h2>FM Synth</h2>
+            <div class="grid">
+                <div class="slider-container">
+                    <label for="fm-carrier-freq">Carrier Frequency:</label>
+                    <input type="range" id="fm-carrier-freq" min="20" max="2000" value="440" class="slider">
+                </div>
+                <div class="slider-container">
+                    <label for="fm-modulator-a-freq">Modulator A Frequency:</label>
+                    <input type="range" id="fm-modulator-a-freq" min="20" max="2000" value="880" class="slider">
+                </div>
+                <div class="slider-container">
+                    <label for="fm-modulator-b-freq">Modulator B Frequency:</label>
+                    <input type="range" id="fm-modulator-b-freq" min="20" max="2000" value="1320" class="slider">
+                </div>
+                <div class="slider-container">
+                    <label for="fm-index-a">Modulation Index A:</label>
+                    <input type="range" id="fm-index-a" min="0" max="1000" value="100" class="slider">
+                </div>
+                <div class="slider-container">
+                    <label for="fm-index-b">Modulation Index B:</label>
+                    <input type="range" id="fm-index-b" min="0" max="1000" value="50" class="slider">
+                </div>
+            </div>
+        </div>
+    
+        <div class="control-group">
+            <h2>Effects</h2>
+            <div class="grid">
+                <div class="slider-container">
+                    <label for="distortion-amount">Distortion Amount:</label>
+                    <input type="range" id="distortion-amount" min="0" max="1000" value="400" class="slider">
+                </div>
+                <div>
+                    <label for="arpeggiator-pattern">Arpeggiator Pattern:</label>
+                    <select id="arpeggiator-pattern">
+                        <option value="up">Up</option>
+                        <option value="down">Down</option>
+                        <option value="updown">Up-Down</option>
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    
+        <div class="control-group">
+            <h2>Sequencer Variations</h2>
+            <div class="grid">
+                <button id="invert-drum">Invert Drum</button>
+                <button id="invert-synth1">Invert Synth 1</button>
+                <button id="invert-synth2">Invert Synth 2</button>
+                <button id="shift-drum">Shift Drum</button>
+                <button id="shift-synth1">Shift Synth 1</button>
+                <button id="shift-synth2">Shift Synth 2</button>
+                <button id="randomize-drum">Randomize Drum</button>
+                <button id="randomize-synth1">Randomize Synth 1</button>
+                <button id="randomize-synth2">Randomize Synth 2</button>
+                <button id="randomize-all">Randomize All</button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <h2>Experimental Controls</h2>
+            <div class="grid">
+                <button id="chaos-mode-btn" class="glitch-btn" data-text="CHAOS MODE">CHAOS MODE</button>
+                <button id="glitch-mode-btn" class="glitch-btn" data-text="GLITCH MODE">GLITCH MODE</button>
+                <button id="ai-generate-btn" class="glitch-btn" data-text="AI GENERATE">AI GENERATE</button>
+                <button id="robot-speak-btn" class="glitch-btn" data-text="ROBOT SPEAK">ROBOT SPEAK</button>
+                <div class="slider-container">
+                    <label for="chaos-intensity">Chaos Intensity:</label>
+                    <input type="range" id="chaos-intensity" class="slider" min="0" max="1" step="0.1" value="0.5">
+                </div>
+                <div class="slider-container">
+                    <label for="glitch-intensity">Glitch Level:</label>
+                    <input type="range" id="glitch-intensity" class="slider" min="0" max="1" step="0.1" value="0.5">
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <h2>Quantum & Dimensional Controls</h2>
+            <div class="grid">
+                <button id="quantum-mode-btn" class="glitch-btn" data-text="QUANTUM MODE">QUANTUM MODE</button>
+                <button id="3d-viz-btn" class="glitch-btn" data-text="3D VISUALIZER">3D VISUALIZER</button>
+                <button id="time-machine-btn" class="glitch-btn" data-text="TIME MACHINE">TIME MACHINE</button>
+                <button id="awaken-ai-btn" class="glitch-btn" data-text="AWAKEN AI">AWAKEN AI</button>
+                <button id="hyperspace-btn" class="glitch-btn" data-text="HYPERSPACE">HYPERSPACE</button>
+                <button id="paradox-btn" class="glitch-btn" data-text="CREATE PARADOX">CREATE PARADOX</button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <h2>Time Travel</h2>
+            <div class="grid">
+                <button id="rewind-btn">⏪ Rewind</button>
+                <button id="pause-time-btn">⏸️ Pause Time</button>
+                <button id="fast-forward-btn">⏩ Fast Forward</button>
+                <button id="branch-universe-btn">🌌 Branch Universe</button>
+                <div class="timeline-display">
+                    <span id="current-time">T: 0</span>
+                    <span id="universe-id">U: PRIME</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <h2>Audio Enhancement</h2>
+            <div class="grid">
+                <div class="slider-container">
+                    <label for="audio-warmth">Analog Warmth:</label>
+                    <input type="range" id="audio-warmth" class="slider" min="0" max="1" step="0.01" value="0.5">
+                </div>
+                <div class="slider-container">
+                    <label for="spatial-width">Spatial Width:</label>
+                    <input type="range" id="spatial-width" class="slider" min="0" max="1" step="0.01" value="0.5">
+                </div>
+                <div class="slider-container">
+                    <label for="shimmer-amount">Shimmer Reverb:</label>
+                    <input type="range" id="shimmer-amount" class="slider" min="0" max="1" step="0.01" value="0.3">
+                </div>
+                <div>
+                    <label for="harmonic-scale">Scale:</label>
+                    <select id="harmonic-scale">
+                        <option value="major">Major</option>
+                        <option value="minor">Natural Minor</option>
+                        <option value="harmonic">Harmonic Minor</option>
+                        <option value="dorian">Dorian</option>
+                        <option value="phrygian">Phrygian</option>
+                        <option value="lydian">Lydian</option>
+                        <option value="mixolydian">Mixolydian</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="root-note">Root Note:</label>
+                    <select id="root-note">
+                        <option value="C">C</option>
+                        <option value="C#">C#</option>
+                        <option value="D">D</option>
+                        <option value="D#">D#</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        <option value="F#">F#</option>
+                        <option value="G">G</option>
+                        <option value="G#">G#</option>
+                        <option value="A">A</option>
+                        <option value="A#">A#</option>
+                        <option value="B">B</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="granular-texture">Texture:</label>
+                    <select id="granular-texture">
+                        <option value="clouds">Clouds</option>
+                        <option value="rain">Rain</option>
+                        <option value="shimmer">Shimmer</option>
+                        <option value="freeze">Freeze</option>
+                        <option value="chaos">Chaos</option>
+                    </select>
+                </div>
+                <button id="emotional-ai-btn" class="glitch-btn" data-text="EMOTIONAL AI">EMOTIONAL AI</button>
+                <div>
+                    <label for="binaural-state">Binaural State:</label>
+                    <select id="binaural-state">
+                        <option value="off">Off</option>
+                        <option value="delta">Delta (Sleep)</option>
+                        <option value="theta">Theta (Meditation)</option>
+                        <option value="alpha">Alpha (Relaxation)</option>
+                        <option value="beta">Beta (Focus)</option>
+                        <option value="gamma">Gamma (Peak Awareness)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <button id="play-button">Play</button>
+    
+        <div class="control-group">
+            <h2>Visualizer</h2>
+            <div class="visualizer-controls">
+                <button class="viz-mode-btn active" data-mode="bars">Bars</button>
+                <button class="viz-mode-btn" data-mode="waveform">Waveform</button>
+                <button class="viz-mode-btn" data-mode="circular">Circular</button>
+                <button class="viz-mode-btn" data-mode="matrix">Matrix</button>
+            </div>
+            <canvas id="visualizer"></canvas>
+        </div>
+    </div>
+    
+    <div class="shortcuts-hint">
+        <h3>Keyboard Shortcuts</h3>
+        <p><span class="shortcut-key">Space</span> Play/Stop</p>
+        <p><span class="shortcut-key">R</span> Randomize All</p>
+        <p><span class="shortcut-key">C</span> Clear All</p>
+        <p><span class="shortcut-key">1-8</span> Apply Preset</p>
+        <p><span class="shortcut-key">↑↓←→</span> Pattern Shift</p>
+        <hr style="margin: 10px 0; border-color: #333;">
+        <p style="font-size: 0.7em; opacity: 0.6;">Secrets: Konami Code, Triple-click title</p>
+    </div>
+    
+    <div class="loading-spinner"></div>
+    
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
